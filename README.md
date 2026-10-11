@@ -38,7 +38,7 @@ In Settings, Developer, Edit Config, add the server and restart the app:
 
 `#semver:^1` always runs the newest 1.x release. Then ask something like "what did r/classicwow talk about this week".
 
-## Rate limits
+## How it behaves
 
 Reddit allows about one anonymous request per minute per IP address. Measured on 2026-10-11, every feed answered with `x-ratelimit-remaining: 0` and a reset at the next full minute, and a second request in the same minute got a 429.
 
@@ -51,7 +51,7 @@ So the server:
 
 Each tool call is one request, so a series of calls takes about a minute each. One call with a larger `limit` is faster than several pages.
 
-## Limits of RSS
+## Limits
 
 The feeds carry titles, bodies, authors, communities, dates, links and IDs. They do not carry:
 
@@ -60,6 +60,8 @@ The feeds carry titles, bodies, authors, communities, dates, links and IDs. They
 - Comment nesting or parent IDs. Comments come as a flat list in thread order, and a comment URL returns that comment with its replies.
 
 Searching comments or users is not possible: Reddit ignores `type=comment` and returns nothing for `type=user`. User feeds come newest first only, because a sort made them return nothing. There is no NSFW switch, the feeds return what Reddit shows logged-out visitors.
+
+There is no hosted endpoint. Reddit's limit counts per IP address, so one shared server would split a single request a minute among all its users. Run it locally instead.
 
 An OAuth mode with Reddit's Data API would add scores, comment counts, nesting and a higher rate limit. Reddit closed self-service API keys in November 2025 and approves access case by case, so it is left out until it can be tested.
 

@@ -1,5 +1,11 @@
 # Reddit MCP
 
+Reddit has been restricting crawling and API access, which MCP servers like this one depend on, since 2024-06-25. Because of that, this server no longer works reliably:
+
+- 2024-06-25: Reddit [announced](https://techcrunch.com/2024/06/25/reddits-upcoming-changes-attempt-to-safeguard-the-platform-against-ai-crawlers) a robots.txt that disallows all crawlers.
+- 2025-11-11: Reddit [closed self-service API access](https://www.reddit.com/r/redditdev/comments/1oug31u/introducing_the_responsible_builder_policy_new/). New OAuth apps need approval under its Responsible Builder Policy.
+- 2026-05-28: Reddit [announced](https://www.reddit.com/r/modnews/comments/1tq9vxo/) the end of logged-out `.json` access, which has answered 403 since late May 2026. Only the RSS feeds still answer, at about one request a minute and without scores.
+
 Lets Claude search Reddit, read community and user feeds, and read posts with their comments. It is a local, read-only MCP server that reads Reddit's public RSS feeds, so it needs no account, API key or browser.
 
 Unofficial and not affiliated with Reddit.
